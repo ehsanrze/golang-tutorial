@@ -1,5 +1,6 @@
 # Essentials
 
+## Session 01
 
 ### Structure
 Go offer two important principles (module and package) for building scalable and clean project seamlessly.
@@ -233,4 +234,311 @@ type ID = int
 | **Custom Methods**     | Can define methods on the new type.   | Cannot define methods (not distinct). |
 | **Use Case**           | Semantic meaning, adding methods.     | Readability, compatibility.           |
 
+---
 
+Here's a concise tutorial on the requested Go topics, complete with examples. You can use this to teach others effectively.
+
+---
+
+## Session 02
+
+### Input and Output
+
+#### a) Getting Input
+In Go, you can use `fmt.Scan` or `fmt.Scanln` to take input from the user. When storing the input into a variable, you must provide its **memory address** using the `&` symbol. This tells Go where to store the input value.
+
+##### Explanation of `&`:
+- The `&` operator is used to get the **address of a variable**.
+- `fmt.Scan` and `fmt.Scanln` need a **pointer** to the variable where the input will be stored. By passing the memory address using `&`, the functions can directly modify the variable.
+
+
+#### Example:
+```go
+package main
+import "fmt"
+
+func main() {
+    var name string
+    fmt.Print("Enter your name: ")
+    fmt.Scan(&name) // Use & to pass the address of the variable
+    fmt.Println("Hello,", name)
+}
+```
+
+---
+
+#### b) Printing Output
+
+Go provides several ways to display output using the `fmt` package. Each function serves a specific purpose for formatting and displaying text.
+
+##### **1) `fmt.Print` and `fmt.Println`**
+- **`fmt.Print`**: Prints text **without adding a newline** at the end.
+- **`fmt.Println`**: Prints text and **automatically adds a newline** at the end.
+
+##### Example:
+```go
+package main
+import "fmt"
+
+func main() {
+    fmt.Print("This is printed without a newline. ")
+    fmt.Println("This prints with a newline.")
+}
+```
+
+##### Output:
+```
+This is printed without a newline. This prints with a newline.
+```
+
+---
+
+##### **2) `fmt.Printf`**
+- **`fmt.Printf`**: Prints formatted text, similar to `printf` in C.
+- Allows placeholders like `%s` (string), `%d` (integer), `%f` (float), etc.
+- A newline (`\n`) must be added manually if needed.
+
+##### Example:
+```go
+package main
+import "fmt"
+
+func main() {
+    name := "Alice"
+    age := 25
+    fmt.Printf("Name: %s, Age: %d\n", name, age)
+}
+```
+
+##### Output:
+```
+Name: Alice, Age: 25
+```
+
+##### Placeholders:
+| Placeholder | Description                 |
+|-------------|-----------------------------|
+| `%s`        | String                      |
+| `%d`        | Decimal (integer)           |
+| `%f`        | Floating-point number       |
+| `%t`        | Boolean (`true` or `false`) |
+
+---
+
+##### **3) `fmt.Sprintf`**
+- **`fmt.Sprintf`**: Similar to `fmt.Printf`, but instead of printing to the console, it **returns the formatted string**.
+- Useful for storing formatted text in variables.
+
+##### Example:
+```go
+package main
+import "fmt"
+
+func main() {
+    name := "Bob"
+    message := fmt.Sprintf("Hello, %s!", name) // Store formatted text in a variable
+    fmt.Println(message) // Print the formatted message
+}
+```
+
+##### Output:
+```
+Hello, Bob!
+```
+
+---
+
+### Functions
+
+Functions in Go are declared using the `func` keyword. They can take parameters, return values, and optionally name the return values for clarity.
+
+#### a) Syntax (Unnamed Return Values):
+```go
+func functionName(param1 type, param2 type) returnType {
+    // function body
+    return value
+}
+```
+#### Examples
+
+```go
+package main
+import "fmt"
+
+// A function that adds two numbers
+func add(a int, b int) int {
+    return a + b // Explicit return
+}
+
+func main() {
+    result := add(3, 5)
+    fmt.Println("Sum:", result) // Output: Sum: 8
+}
+```
+---
+
+#### b) Syntax (Named Return Values):
+```go
+func functionName(param1 type, param2 type) (returnValueName returnType) {
+    // function body
+    return // implicitly returns the named value
+}
+```
+
+#### Examples
+
+##### **1) Function with Named Return Value:**
+```go
+package main
+import "fmt"
+
+// A function with a named return value
+func add(a int, b int) (result int) {
+    result = a + b // Assign to the named return variable
+    return         // Implicit return of the named 'result'
+}
+
+func main() {
+    sum := add(10, 20)
+    fmt.Println("Sum:", sum) // Output: Sum: 30
+}
+```
+
+##### **2) Function with Multiple Named Return Values:**
+```go
+package main
+import "fmt"
+
+// A function to calculate sum and product
+func calculate(a int, b int) (sum int, product int) {
+    sum = a + b
+    product = a * b
+    return // Implicitly returns both 'sum' and 'product'
+}
+
+func main() {
+    s, p := calculate(4, 5)
+    fmt.Println("Sum:", s)      // Output: Sum: 9
+    fmt.Println("Product:", p) // Output: Product: 20
+}
+```
+
+#### Key Points:
+1. **Unnamed Return Values**: 
+  - Common and straightforward.
+  - Use when clarity of return values comes from the context or naming of the function.
+2. **Named Return Values**: 
+  - Useful for improving readability and reducing explicit code.
+  - Use for complex functions or when the return values’ purpose is not immediately obvious.
+
+---
+
+### Statements
+
+#### **a) `if`, `else`, and `else if`:**
+Go uses these for conditional logic.
+
+#### Example:
+```go
+package main
+import "fmt"
+
+func main() {
+    num := 10
+    if num > 0 {
+        fmt.Println("Positive number")
+    } else if num == 0 {
+        fmt.Println("Zero")
+    } else {
+        fmt.Println("Negative number")
+    }
+}
+```
+
+---
+
+#### **2. Loops (`for`):**
+Go uses `for` for iteration, and it can replace `while` loops.
+
+#### Simple Loop:
+```go
+package main
+import "fmt"
+
+func main() {
+    for i := 1; i <= 5; i++ {
+        fmt.Println("Iteration:", i)
+    }
+}
+```
+
+#### `for` as a `while` loop:
+```go
+package main
+import "fmt"
+
+func main() {
+    count := 1
+    for count <= 5 {
+        fmt.Println("Count:", count)
+        count++
+    }
+}
+```
+
+#### Breaking a Loop:
+```go
+package main
+import "fmt"
+
+func main() {
+    for i := 1; i <= 10; i++ {
+        if i == 5 {
+            fmt.Println("Breaking the loop at", i)
+            break
+        }
+    }
+}
+```
+
+#### Continuing a Loop:
+```go
+package main
+import "fmt"
+
+func main() {
+    for i := 1; i <= 10; i++ {
+        if i%2 == 0 {
+            continue // Skip even numbers
+        }
+        fmt.Println("Odd number:", i)
+    }
+}
+```
+
+---
+
+#### **3. `switch` Case:**
+Use `switch` for cleaner multiple condition handling.
+
+#### Example:
+```go
+package main
+import "fmt"
+
+func main() {
+    day := 3
+    switch day {
+    case 1:
+        fmt.Println("Monday")
+    case 2:
+        fmt.Println("Tuesday")
+    case 3:
+        fmt.Println("Wednesday")
+    default:
+        fmt.Println("Other day")
+    }
+}
+```
+
+---
