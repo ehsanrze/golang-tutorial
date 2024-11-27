@@ -457,10 +457,10 @@ func main() {
 
 ---
 
-#### **2. Loops (`for`):**
+#### **b) Loops (`for`):**
 Go uses `for` for iteration, and it can replace `while` loops.
 
-#### Simple Loop:
+##### 1) Simple Loop:
 ```go
 package main
 import "fmt"
@@ -472,7 +472,7 @@ func main() {
 }
 ```
 
-#### `for` as a `while` loop:
+##### 2) `for` as a `while` loop:
 ```go
 package main
 import "fmt"
@@ -486,7 +486,7 @@ func main() {
 }
 ```
 
-#### Breaking a Loop:
+##### 3) Breaking a Loop:
 ```go
 package main
 import "fmt"
@@ -501,7 +501,7 @@ func main() {
 }
 ```
 
-#### Continuing a Loop:
+##### 4) Continuing a Loop:
 ```go
 package main
 import "fmt"
@@ -518,7 +518,7 @@ func main() {
 
 ---
 
-#### **3. `switch` Case:**
+#### **c) `switch` Case:**
 Use `switch` for cleaner multiple condition handling.
 
 #### Example:
