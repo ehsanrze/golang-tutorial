@@ -542,3 +542,6 @@ func main() {
 ```
 
 ---
+### Statements
+#### **c) `Writing To Files` Case:**
+
