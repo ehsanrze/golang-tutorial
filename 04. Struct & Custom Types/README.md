@@ -239,4 +239,52 @@ type Employee struct {
 }
 ```
 
-#### What is struct tags?
+#### What is struct tags? (metadata)
+
+struct tags are special annotations added to struct fields. They give extra details about how the fields should be handled, especially when working with tasks like converting data to JSON, interacting with databases, or validating input.
+
+##### Syntax
+
+```go
+type User struct {
+    ID    int    `json:"id"`
+    Name  string `json:"name"`
+    Email string `json:"email,omitempty"`
+}
+```
+
+##### Purpose
+
+**Encoding/Decoding**
+
+Specify how struct fields are marshaled/unmarshaled in formats like JSON, XML, or YAML.
+
+```go
+type User struct {
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email,omitempty"`
+}
+```
+
+**Database Mapping**
+
+Match struct fields with database table columns.
+
+```go
+type User struct {
+    ID   int    `db:"id"`
+    Name string `db:"name"`
+}
+```
+
+**Validation**
+
+Define validation rules for struct fields (e.g., using libraries like go-playground/validator).
+
+```go
+type User struct {
+    Name  string `validate:"required"`
+    Email string `validate:"email"`
+}
+```
