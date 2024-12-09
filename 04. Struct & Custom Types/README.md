@@ -187,3 +187,56 @@ func New(name string, path string, size int) (*File, error) {
 }
 ```
 
+#### What is struct embedding?
+struct embedding is a way to include one struct within another.
+It allows the embedding struct to inherit fields and methods of the embedded struct, enabling composition over inheritance.
+
+It has two types:
+1. within a name
+2. without name (anonymous field)
+
+```go
+
+type Address struct {
+  City    string
+  Country string
+}
+
+
+// former option (within a name)
+type Person struct {
+  Name    string
+  Age     int
+  Address
+}
+
+// latter option (anonymous field)
+type Person struct {
+  Name    string
+  Age     int
+  Addr    Address
+}
+```
+
+##### Some key points:
+**Overriding**
+
+```go
+type Person struct {
+    Name    string
+    Address
+    City string // Overrides Address.City
+}
+```
+
+**Multiple Embeddings**
+
+```go
+type Employee struct {
+    ID int
+    Address
+    ContactInfo
+}
+```
+
+#### What is struct tags?
