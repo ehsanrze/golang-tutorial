@@ -130,3 +130,60 @@ file := struct {
   - Non-Reusability
   - Reduced readability 
   - Not suitable for large projects
+
+
+#### How to have constructor on golang?
+
+In Go, **constructors** are **not a built-in feature** like in object-oriented languages.
+Instead, developers typically use functions to initialize and return instances of structs.
+
+##### Use a New function
+
+The idiomatic way to name constructors in Go is to prefix the function name with New. For example:
+
+```go
+type File struct {
+    name    string
+    path    string
+    size    int
+}
+
+// we could return the copy of the value
+func New (name string, path string, size int) File {
+	return File{
+		Name:   "test", 
+		Path:    "./folder1/test.txt", 
+		Size: 50,
+	}
+}
+
+// or pointer -> it is better to avoid copying
+func New (name string, path string, size int) *File {
+      return &File{
+		  Name:   "test", 
+		  Path:    "./folder1/test.txt", 
+		  Size: 50,
+	  }
+}
+
+
+// with input validation -> best practice
+func New(name string, path string, size int) (*File, error) {
+	if name == "" {
+		return nil, errors.New("name cannot be empty")
+	}
+	if path == "" {
+		return nil, errors.New("path cannot be empty")
+	}
+	if size <= 0 {
+		return nil, errors.New("size must be greater than 0")
+	}
+	
+	return &File {
+		Name: name, 
+		Path: path, 
+		Size: size,
+	}, nil
+}
+```
+
