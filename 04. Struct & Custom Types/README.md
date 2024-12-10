@@ -104,6 +104,18 @@ func (r ReceiverType) MethodName() {
   
   **Note:** Use this when the method needs to change the receiver's fields or to avoid copying large structs.
 
+
+Note: We could have receivers for other types as well (not only struct)
+
+```go
+type str string
+
+func (text str) log() {
+	fmt.Println(text)
+}
+
+str.log()
+```
 **What types cannot have receivers**
   - Built-in types like int, string, or float64 directly.
   - Types from other packages (you cannot define methods on them directly).
