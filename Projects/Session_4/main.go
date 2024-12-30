@@ -22,7 +22,7 @@ func main() {
 		panic(err)
 	}
 
-	newUser.Log()
+	//newUser.Log()
 	err = newUser.Write()
 	if err != nil {
 		panic(err)
